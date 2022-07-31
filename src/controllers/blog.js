@@ -7,7 +7,7 @@ exports.createBlogPost = (req, res, next) => {
     data: {
       post_id: 1,
       title: "Title Blog",
-      //   image: "image.jpg",
+      image: "image.jpg",
       body: "Lorem ipsum dolor si jamet",
       created_at: "01/01/2022",
       author: {
