@@ -17,6 +17,11 @@ Standar Status Response ===========
 
 GROUP -> Authentication
 [1] Register
+[2] Login
+
+----------------------------------------------
+GROUP -> Authentication
+[1] Register
 https://mern-api.blablabla.com/v1/auth/register
 
 req {
@@ -35,17 +40,50 @@ res{
     }
 }
 
-Error Response :
+Response :
 400 -> Input yang ada masukkan tidak valid
 201 -> Register Berhasil
 
-==================================================================================
+---------------------------------------------------------------
 GROUP -> Authentication
 [2] Login
 https://mern-api.blablabla.com/v1/auth/login
+================================================================
 
-GROUP -> Blog :
+GROUP -> Blog
 [1] Create Blog Post
 [2] Get Blog Post
 [3] Update Blog Post
 [4] Delete Blog Post
+
+---------------------------------------------------------
+[1] Create Blog Post
+[POST] {root.api}/{version}/blog/create
+
+req {
+    "title" : "Title Blog",
+    "image" : "image.jpg",
+    "body" : "Lorem ipsum dolor si jamet"
+}
+
+res{
+    "message" : "Create Blog Success",
+    "data" : {
+        "post_id" : 1,
+        "title" : "Title Blog",
+        "image" : "image.jpg",
+        "body" : "Lorem ipsum dolor si jamet",
+        "created_at" : "01/01/2022",
+        "author" : {
+            "uid" : 1,
+            "name" : "Apem"
+
+        }
+    }
+}
+
+Response :
+400 -> Input yang ada masukkan tidak valid
+201 -> Blog Berhasil dibuat
+
+------------------------------------------------------------------
