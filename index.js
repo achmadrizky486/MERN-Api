@@ -2,6 +2,16 @@ const express = require("express");
 const app = express();
 const productRoutes = require("./src/routes/products");
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,POST,PUT,PATCH,DELETE,OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 app.use("/v1/customer/", productRoutes);
 app.listen(4000);
 
@@ -38,3 +48,24 @@ app.listen(4000);
 // // git init -> git status -> buat .gitignore node_modules -> git remote add origin https://github.com/achmadrizky486/MERN-Api.git -> git add . -> commit seperti biasa, trus push sync
 
 // //Buat router di line 3
+
+//CodePen==============================
+// JS
+// const getButton = document.getElementById("get")
+// const postButton = document.getElementById("post")
+
+// getButton.addEventListener("click", ()=>{ fetch("http://localhost:4000/v1/customer/products")
+//   .then(res=> res.json())
+//   .then(hasil=>console.log(hasil))
+//   .catch(err=>console.log(err))
+// })
+
+// postButton.addEventListener("click", ()=>{ fetch("http://localhost:4000/v1/customer/product",{method : 'POST'})
+//   .then(res=> res.json())
+//   .then(hasil=>console.log(hasil))
+//   .catch(err=>console.log(err))
+// })
+
+//HTML
+//<button id="get">GET API</button>
+//<button id="post">POST API</button>
