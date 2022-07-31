@@ -1,8 +1,10 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser"); // npm install --save body-parser
 
 const app = express();
+
 const productRoutes = require("./src/routes/products");
+const authRoutes = require("./src/routes/auth");
 
 app.use(bodyParser.json());
 
@@ -17,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/v1/customer/", productRoutes);
+app.use("/v1/auth/", authRoutes);
 app.listen(4000);
 
 // const router = express.Router();

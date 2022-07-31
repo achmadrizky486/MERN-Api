@@ -13,9 +13,9 @@ Standar Status Response ===========
 404 - NOT FOUND     --> Request End Point Not Found
 500 - INTERNAL SERVER ERROR --> Error on Server side
 502 - BAD GATEWAY   --> Invalid Response From Another Request
- 
+============================================================================
 
-GROUP -> Authentication :
+GROUP -> Authentication
 [1] Register
 https://mern-api.blablabla.com/v1/auth/register
 
@@ -37,7 +37,10 @@ res{
 
 Error Response :
 400 -> Input yang ada masukkan tidak valid
+201 -> Register Berhasil
 
+==================================================================================
+GROUP -> Authentication
 [2] Login
 https://mern-api.blablabla.com/v1/auth/login
 
