@@ -1,4 +1,4 @@
-exports.createProduct = () => (req, res, next) => {
+exports.createProduct = (req, res, next) => {
   res.json({
     message: "Create Product Succes",
     data: {
@@ -10,7 +10,7 @@ exports.createProduct = () => (req, res, next) => {
   next();
 };
 
-exports.getAllProducts = () => (req, res, next) => {
+exports.getAllProducts = (req, res, next) => {
   res.json({
     message: "Get All Products Succes",
     data: [
