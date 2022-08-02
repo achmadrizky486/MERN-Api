@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser"); // npm install --save body-parser
+const mongoose = require("mongoose");
 
 const app = express();
 
@@ -24,10 +25,20 @@ app.use((error, req, res, next) => {
   const status = error.errorStatus || 500;
   const message = error.message;
   const data = error.data;
-  res.status(status).json({ message: message, data: data });
+  res.status(status).json({
+    message: message,
+    data: data,
+  });
 });
 
-app.listen(4000);
+mongoose
+  .connect(
+    "mongodb+srv://achmad:cO0PFlSHFXIN1i7J@cluster0.ahs05do.mongodb.net/?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    app.listen(4000, () => console.log("Connected"));
+  })
+  .catch(err => console.log(err));
 
 // const router = express.Router();
 
@@ -84,4 +95,5 @@ app.listen(4000);
 //<button id="get">GET API</button>
 //<button id="post">POST API</button>
 
-//npm install --save express-validator
+// npm install --save express-validator
+// npm install mongoose --save

@@ -11,5 +11,7 @@ exports.register = (req, res, next) => {
       email: email,
     },
   };
-  res.status(201).json({ result });
+  res.status(201).json({
+    result,
+  });
 };
