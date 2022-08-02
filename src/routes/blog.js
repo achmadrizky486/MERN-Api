@@ -1,7 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const blogController = require("../controllers/blog");
+const { body } = require("express-validator");
 
 //[POST] /v1/blog/post
-router.post("/post", blogController.createBlogPost);
+router.post(
+  "/post",
+  [
+    body("title").isLength({ min: 5 }).withMessage("Title min 5 Karakter"),
+    body("body").isLength({ min: 5 }).withMessage("Body min 5 Karakter"),
+  ],
+  blogController.createBlogPost
+);
 module.exports = router;
