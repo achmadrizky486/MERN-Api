@@ -33,12 +33,12 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://achmad:cO0PFlSHFXIN1i7J@cluster0.ahs05do.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://achmad:cO0PFlSHFXIN1i7J@cluster0.ahs05do.mongodb.net/mern-blog?retryWrites=true&w=majority"
   )
   .then(() => {
     app.listen(4000, () => console.log("Connected"));
   })
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // const router = express.Router();
 
