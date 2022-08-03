@@ -14,4 +14,12 @@ router.post(
 );
 router.get("/posts", blogController.getAllBlogPost);
 router.get("/post/:postId", blogController.getBlogPostById);
+router.put(
+  "/post/:postId",
+  [
+    body("title").isLength({ min: 5 }).withMessage("Title min 5 Karakter"),
+    body("body").isLength({ min: 5 }).withMessage("Body min 5 Karakter"),
+  ],
+  blogController.updateBlogPost
+);
 module.exports = router;

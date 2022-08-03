@@ -72,3 +72,44 @@ exports.getBlogPostById = (req, res, next) => {
       next(err);
     });
 };
+
+exports.updateBlogPost = (req, res, next) => {
+  const errors = validationResult(req); // buat variabel errors
+  if (!errors.isEmpty()) {
+    const err = new Error("Input Value Tidak Sesuai");
+    errorStatus = 400;
+    err.data = errors.array();
+    throw err;
+  }
+  if (!req.file) {
+    const err = new Error("Dimana images nyaaaaaa????? <Yusuf Mansur vibe>");
+    errorStatus = 422;
+    throw err;
+  }
+
+  const title = req.body.title;
+  const image = req.file.path;
+  const body = req.body.body;
+  const postId = req.params.postId;
+  BlogPost.findById(postId)
+    .then((post) => {
+      if (!post) {
+        const error = new Error("Data Tidak Ditemukan");
+        error.errorStatus = 404;
+        throw error;
+      }
+      post.title = title;
+      post.body = body;
+      post.image = image;
+      return post.save();
+    })
+    .then((result) => {
+      res.status(200).json({
+        message: "Data Berhasil Diupdate",
+        data: result,
+      });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
