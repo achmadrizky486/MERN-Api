@@ -44,16 +44,28 @@ exports.createBlogPost = (req, res, next) => {
 };
 
 exports.getAllBlogPost = (req, res, next) => {
+  const currentPage = req.query.page || 1;
+  const perPage = req.query.perPage || 5;
+  let totalItems;
+
   BlogPost.find()
+    .countDocuments()
+    .then((count) => {
+      totalItems = count;
+      return BlogPost.find()
+        .skip((parseInt(currentPage) - 1) * parseInt(perPage))
+        .limit(perPage);
+    })
     .then((result) => {
       res.status(200).json({
-        message: "Semua Data Berhasil Dipanggil",
+        message: "Data Berhasil Dipanggil",
         data: result,
+        total_data: totalItems,
+        per_page: parseInt(perPage),
+        current_page: parseInt(currentPage),
       });
     })
-    .catch((err) => {
-      next(err);
-    });
+    .catch((err) => next(err));
 };
 
 exports.getBlogPostById = (req, res, next) => {
